@@ -5,7 +5,7 @@
 %{!?kversion: %define kversion 4.4.19-1.el7.elrepo.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 0.0
+Version: 1.0.0
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -75,3 +75,6 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Sep 28 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.0-1
+- First release - NethServer/dev#5102
+
