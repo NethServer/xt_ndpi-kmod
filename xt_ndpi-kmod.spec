@@ -2,10 +2,10 @@
 %define kmod_name xt_ndpi
 
 # If kversion isn't defined on the rpmbuild line, define it here.
-%{!?kversion: %define kversion 4.4.22-1.el7.elrepo.%{_target_cpu}}
+%{!?kversion: %define kversion 3.10.0-514.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 1.0.0
+Version: 2.0.0
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -13,8 +13,8 @@ Summary: %{kmod_name} kernel module(s)
 URL:     http://www.kernel.org/
 
 BuildRequires: redhat-rpm-config, perl, kernel-devel, gcc, iptables-devel, libpcap-devel, autoconf, automake, libtool
-BuildRequires: kernel-lt, kernel-lt-devel
-Requires: kernel-lt
+BuildRequires: kernel >= 3.10.0-514, kernel-devel >= 3.10.0-514
+Requires: kernel >= 3.10.0-514
 ExclusiveArch: x86_64
 
 # Sources.
@@ -39,6 +39,7 @@ of the same variant of the Linux kernel and not on any one specific build.
 ./autogen.sh
 tar xvzf %{SOURCE1}
 cd ndpi-netfilter
+sed -i -e 's/net, __ndpi_free_flow, n)/net, __ndpi_free_flow, n, 0 ,0)/' src/main.c
 sed -e '/^MODULES_DIR/d' -e '/^KERNEL_DIR/d' -i src/Makefile
 MODULES_DIR=/lib/modules/%{kversion} KERNEL_DIR=$MODULES_DIR/build/ NDPI_PATH=$PWD/nDPI-1.7.20151023 make
 echo "override %{kmod_name} * weak-updates/%{kmod_name}" > kmod-%{kmod_name}.conf
@@ -75,6 +76,9 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Dec 02 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.0-1
+- Built on kernel 3.10.0-514.el7
+
 * Wed Sep 28 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.0-1
 - First release - NethServer/dev#5102
 - Built on kernel-lt 4.4.22-1
