@@ -76,6 +76,9 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Dec 14 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.0-1
+- Release for CentOS 7.3 - NethServer/dev#5170
+
 * Fri Dec 02 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.0-1
 - Built on kernel 3.10.0-514.el7
 
