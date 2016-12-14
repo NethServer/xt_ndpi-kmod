@@ -13,7 +13,7 @@ Summary: %{kmod_name} kernel module(s)
 URL:     http://www.kernel.org/
 
 BuildRequires: redhat-rpm-config, perl, kernel-devel, gcc, iptables-devel, libpcap-devel, autoconf, automake, libtool
-BuildRequires: kernel >= 3.10.0-514, kernel-devel >= 3.10.0-514
+BuildRequires: kernel = 3.10.0-514.el7, kernel-devel = 3.10.0-514.el7
 Requires: kernel >= 3.10.0-514
 ExclusiveArch: x86_64
 
