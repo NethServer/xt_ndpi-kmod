@@ -1,26 +1,22 @@
 xt_ndpi-kmod
 ============
 
-This RPM provides NDPI kernel and iptable modules for CentOS 7.
+This RPM provides nDPI kernel and iptables modules for CentOS 7.
 
 Using
 -----
 
 This procedure has been tested with kernel-3.10.0-514.el7.x86_64 from CentOS 7.3.
 
-1. Make sure to install the kernel-lt and the kernel module::
+1. Install the kernel module::
 
      yum install xt_ndpi-kmod
 
-2. Reboot the machine 
-
-3. At boot menu select the kernel-lt
-
-4. Load the kernel module: ::
+2. Load the kernel module: ::
 
      modrpobe xt_ndpi
 
-5. Check the module is correctly loaded: ::
+3. Check the module is correctly loaded: ::
 
      cat /proc/net/xt_ndpi/proto | head -n5
 
@@ -32,7 +28,7 @@ This procedure has been tested with kernel-3.10.0-514.el7.x86_64 from CentOS 7.3
      02         2/000000ff mail_pop         # 0
      03         3/000000ff mail_smtp        # 0
 
-6. Create a sample rule which blocks facebook: ::
+4. Create a sample rule which blocks facebook: ::
 
      iptables -I OUTPUT -m ndpi --facebook -j DROP
  
