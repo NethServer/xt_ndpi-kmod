@@ -19,7 +19,6 @@ ExclusiveArch: x86_64
 
 # Sources.
 Source0:  https://github.com/vel21ripn/nDPI/archive/netfilter.tar.gz
-Source1: http://devel.aanet.ru/ndpi/nDPI-1.7.20151023.tar.gz
 Source5:  GPL-v2.0.txt
 Source10: kmodtool-%{kmod_name}-el7.sh
 
@@ -37,9 +36,9 @@ of the same variant of the Linux kernel and not on any one specific build.
 %prep
 %setup -q -n nDPI-netfilter
 ./autogen.sh
-tar xvzf %{SOURCE1}
 cd ndpi-netfilter
 sed -i -e 's/net, __ndpi_free_flow, n)/net, __ndpi_free_flow, n, 0 ,0)/' src/main.c
+sed -i -e 's/GFP_KERNEL/GFP_ATOMIC/' src/main.c
 sed -e '/^MODULES_DIR/d' -e '/^KERNEL_DIR/d' -i src/Makefile
 MODULES_DIR=/lib/modules/%{kversion} KERNEL_DIR=$MODULES_DIR/build/ NDPI_PATH=$PWD/nDPI-1.7.20151023 make
 echo "override %{kmod_name} * weak-updates/%{kmod_name}" > kmod-%{kmod_name}.conf
