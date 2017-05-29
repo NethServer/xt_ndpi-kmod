@@ -53,8 +53,6 @@ Compile the kernel and iptable modules inside a CentOS 7: ::
   tar xvzf netfilter.tar.gz
   cd nDPI-netfilter/
   ./autogen.sh
-  wget http://devel.aanet.ru/ndpi/nDPI-1.7.20151023.tar.gz
-  tar xvzf nDPI-1.7.20151023.tar.gz
   cd ndpi-netfilter
   sed -e '/^MODULES_DIR/d' -e '/^KERNEL_DIR/d' -i src/Makefile
   MODULES_DIR=/lib/modules/3.10.0-514.el7.x86_64 KERNEL_DIR=$MODULES_DIR/build/ NDPI_PATH=$PWD/nDPI-1.7.20151023 make
