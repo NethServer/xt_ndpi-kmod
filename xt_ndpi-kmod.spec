@@ -5,7 +5,7 @@
 %{!?kversion: %define kversion 3.10.0-514.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 2.0.0
+Version: 2.0.1
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -75,6 +75,9 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Tue May 30 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.1-1
+- nDPI: BUG: scheduling while atomic - Bug NethServer/dev#5301
+
 * Wed Dec 14 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.0-1
 - Release for CentOS 7.3 - NethServer/dev#5170
 
