@@ -62,6 +62,6 @@ Compile the kernel and iptable modules inside a CentOS 7: ::
 Links
 -----
 
-- Gihub repo: https://github.com/vel21ripn/nDPI/tree/netfilter
+- Github repo: https://github.com/vel21ripn/nDPI/tree/netfilter
 - Official site: http://devel.aanet.ru/ndpi
 
