@@ -185,7 +185,7 @@ echo "Working. This may take some time ..."
 if [ -e "/boot/System.map-${verrel}${dotvariant}" ]; then
     /usr/sbin/depmod -aeF "/boot/System.map-${verrel}${dotvariant}" "${verrel}${dotvariant}" > /dev/null || :
 fi
-modules=( \$(find /lib/modules/${verrel}${dotvariant}/extra/${kmod_name} | grep '\.ko$') )
+modules=( \$(find /lib/modules/${verrel}${dotvariant}/extra/${kmod_name} | grep '\.ko\.xz$') )
 if [ -x "/sbin/weak-modules" ]; then
     printf '%s\n' "\${modules[@]}" | /sbin/weak-modules --add-modules
 fi
@@ -194,7 +194,7 @@ EOF
 
 cat <<EOF
 %preun         -n kmod-${kmod_name}${dashvariant}
-rpm -ql kmod-${kmod_name}${dashvariant}-%{version}-%{release}.$(arch) | grep '\.ko$' > /var/run/rpm-kmod-${kmod_name}${dashvariant}-modules
+rpm -ql kmod-${kmod_name}${dashvariant}-%{version}-%{release}.$(arch) | grep '\.ko\.xz$' > /var/run/rpm-kmod-${kmod_name}${dashvariant}-modules
 EOF
 
 cat <<EOF

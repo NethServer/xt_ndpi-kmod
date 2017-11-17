@@ -2,7 +2,7 @@
 %define kmod_name xt_ndpi
 
 # If kversion isn't defined on the rpmbuild line, define it here.
-%{!?kversion: %define kversion 3.10.0-514.el7.%{_target_cpu}}
+%{!?kversion: %define kversion 3.10.0-693.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
 Version: 2.0.1
@@ -13,8 +13,8 @@ Summary: %{kmod_name} kernel module(s)
 URL:     http://www.kernel.org/
 
 BuildRequires: redhat-rpm-config, perl, kernel-devel, gcc, iptables-devel, libpcap-devel, autoconf, automake, libtool
-BuildRequires: kernel = 3.10.0-514.el7, kernel-devel = 3.10.0-514.el7
-Requires: kernel >= 3.10.0-514
+BuildRequires: kernel = 3.10.0-693.el7, kernel-devel = 3.10.0-693.el7
+Requires: kernel >= 3.10.0-693
 ExclusiveArch: x86_64
 
 # Sources.
@@ -70,6 +70,9 @@ do %{__perl} /usr/src/kernels/%{kversion}/scripts/sign-file \
     sha256 %{privkey} %{pubkey} $module;
 done
 %endif
+
+# Compress the module
+find %{buildroot}/lib/modules/%{kversion}/extra/%{kmod_name}/ -type f -name '*.ko' | xargs xz
 
 %clean
 %{__rm} -rf %{buildroot}
