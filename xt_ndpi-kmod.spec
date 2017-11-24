@@ -5,7 +5,7 @@
 %{!?kversion: %define kversion 3.10.0-693.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 2.0.1
+Version: 2.0.2
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -78,6 +78,9 @@ find %{buildroot}/lib/modules/%{kversion}/extra/%{kmod_name}/ -type f -name '*.k
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Nov 24 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.2-1
+- shorewall: some netfilter helpers not loaded - Bug NethServer/dev#5385
+
 * Tue May 30 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.1-1
 - nDPI: BUG: scheduling while atomic - Bug NethServer/dev#5301
 
