@@ -71,9 +71,6 @@ do %{__perl} /usr/src/kernels/%{kversion}/scripts/sign-file \
 done
 %endif
 
-# Compress the module
-find %{buildroot}/lib/modules/%{kversion}/extra/%{kmod_name}/ -type f -name '*.ko' | xargs xz
-
 %clean
 %{__rm} -rf %{buildroot}
 
