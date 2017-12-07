@@ -5,7 +5,7 @@
 %{!?kversion: %define kversion 3.10.0-693.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 2.0.2
+Version: 2.0.3
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -75,6 +75,9 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Thu Dec 07 2017 Filippo Carletti <filippo.carletti@gmail.com> - 2.0.3-1
+- Do NOT compress module -- Bug NethServer/dev#5385
+
 * Fri Nov 24 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.2-1
 - shorewall: some netfilter helpers not loaded - Bug NethServer/dev#5385
 
