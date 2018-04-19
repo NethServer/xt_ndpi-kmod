@@ -18,7 +18,7 @@ Requires: kernel >= 3.10.0-693
 ExclusiveArch: x86_64
 
 # Sources.
-Source0:  https://github.com/vel21ripn/nDPI/archive/netfilter.tar.gz
+Source0:  https://github.com/vel21ripn/nDPI/archive/netfilter-2.2.tar.gz
 Source5:  GPL-v2.0.txt
 Source10: kmodtool-%{kmod_name}-el7.sh
 
@@ -34,8 +34,9 @@ It is built to depend upon the specific ABI provided by a range of releases
 of the same variant of the Linux kernel and not on any one specific build.
 
 %prep
-%setup -q -n nDPI-netfilter
+%setup -q -n nDPI-netfilter-2.2
 ./autogen.sh
+( cd src/lib ; make ndpi_network_list.c.inc )
 cd ndpi-netfilter
 sed -i -e 's/net, __ndpi_free_flow, n)/net, __ndpi_free_flow, n, 0 ,0)/' src/main.c
 sed -i -e 's/GFP_KERNEL/GFP_ATOMIC/' src/main.c
