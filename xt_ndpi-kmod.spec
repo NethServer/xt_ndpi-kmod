@@ -1,8 +1,9 @@
 # Define the kmod package name here.
 %define kmod_name xt_ndpi
+%define ndpi_git_ver ef2028190ec9117419a503e080fc2a0be4d3a5e0
 
 # If kversion isn't defined on the rpmbuild line, define it here.
-%{!?kversion: %define kversion 3.10.0-693.el7.%{_target_cpu}}
+%{!?kversion: %define kversion 3.10.0-862.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
 Version: 2.0.3
@@ -13,14 +14,15 @@ Summary: %{kmod_name} kernel module(s)
 URL:     http://www.kernel.org/
 
 BuildRequires: redhat-rpm-config, perl, kernel-devel, gcc, iptables-devel, libpcap-devel, autoconf, automake, libtool
-BuildRequires: kernel = 3.10.0-693.el7, kernel-devel = 3.10.0-693.el7
-Requires: kernel >= 3.10.0-693
+BuildRequires: kernel = 3.10.0-862.el7, kernel-devel = 3.10.0-862.el7
+Requires: kernel >= 3.10.0-862
 ExclusiveArch: x86_64
 
 # Sources.
-Source0:  https://github.com/vel21ripn/nDPI/archive/netfilter.tar.gz
+Source0: https://github.com/vel21ripn/nDPI/archive/%{ndpi_git_ver}.tar.gz
 Source5:  GPL-v2.0.txt
 Source10: kmodtool-%{kmod_name}-el7.sh
+Patch1: ndpi-netfilter_rhel7.5.patch
 
 # Magic hidden here.
 %{expand:%(sh %{SOURCE10} rpmtemplate %{kmod_name} %{kversion} "")}
@@ -34,13 +36,14 @@ It is built to depend upon the specific ABI provided by a range of releases
 of the same variant of the Linux kernel and not on any one specific build.
 
 %prep
-%setup -q -n nDPI-netfilter
+%setup -q -n nDPI-%{ndpi_git_ver}
+%patch1 -p0
 ./autogen.sh
+( cd src/lib ; make ndpi_network_list.c.inc )
 cd ndpi-netfilter
-sed -i -e 's/net, __ndpi_free_flow, n)/net, __ndpi_free_flow, n, 0 ,0)/' src/main.c
 sed -i -e 's/GFP_KERNEL/GFP_ATOMIC/' src/main.c
 sed -e '/^MODULES_DIR/d' -e '/^KERNEL_DIR/d' -i src/Makefile
-MODULES_DIR=/lib/modules/%{kversion} KERNEL_DIR=$MODULES_DIR/build/ NDPI_PATH=$PWD/nDPI-1.7.20151023 make
+MODULES_DIR=/lib/modules/%{kversion} KERNEL_DIR=$MODULES_DIR/build/ make
 echo "override %{kmod_name} * weak-updates/%{kmod_name}" > kmod-%{kmod_name}.conf
 
 %build
