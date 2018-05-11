@@ -1,6 +1,6 @@
 # Define the kmod package name here.
 %define kmod_name xt_ndpi
-%define ndpi_git_ver ef2028190ec9117419a503e080fc2a0be4d3a5e0
+%define ndpi_git_ver 56393f4e40f18f2d8427d484502b4b2db4b344d7
 
 # If kversion isn't defined on the rpmbuild line, define it here.
 %{!?kversion: %define kversion 3.10.0-862.el7.%{_target_cpu}}

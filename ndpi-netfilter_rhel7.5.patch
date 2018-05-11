@@ -1,12 +1,11 @@
 --- /tmp/main.c	2018-05-02 12:15:16.501596017 +0200
 +++ ndpi-netfilter/src/main.c	2018-05-02 11:52:45.619628795 +0200
-@@ -53,6 +53,9 @@
- #include "../lib/third_party/include/ndpi_patricia.h"
- #include "../lib/third_party/include/ahocorasick.h"
+@@ -50,6 +50,8 @@
  
-+
+ #include "ndpi_patricia.h"
+ 
 +#define LINUX_VERSION_CODE KERNEL_VERSION(4,8,0)
 +
  /* Only for debug! */
+ //#define NDPI_KERNEL_MALLOC_TRACE
  
- //#define NDPI_IPPORT_DEBUG
