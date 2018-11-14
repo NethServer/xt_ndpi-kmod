@@ -1,11 +1,12 @@
---- /tmp/main.c	2018-05-02 12:15:16.501596017 +0200
-+++ ndpi-netfilter/src/main.c	2018-05-02 11:52:45.619628795 +0200
-@@ -50,6 +50,8 @@
- 
- #include "ndpi_patricia.h"
+diff --git a/ndpi-netfilter/src/main.c b/ndpi-netfilter/src/main.c
+index fdd1dd7..f84cf7f 100644
+--- a/ndpi-netfilter/src/main.c
++++ b/ndpi-netfilter/src/main.c
+@@ -53,6 +53,7 @@
+ #include "../lib/third_party/include/ndpi_patricia.h"
+ #include "../lib/third_party/include/ahocorasick.h"
  
 +#define LINUX_VERSION_CODE KERNEL_VERSION(4,8,0)
-+
+ extern ndpi_protocol_match host_match[];
  /* Only for debug! */
- //#define NDPI_KERNEL_MALLOC_TRACE
  
