@@ -1,12 +1,12 @@
 # Define the kmod package name here.
 %define kmod_name xt_ndpi
-%define ndpi_git_ver 56393f4e40f18f2d8427d484502b4b2db4b344d7
+%define ndpi_git_ver a360566135c9804b10aef5178d54a83fe2fd0cb9
 
 # If kversion isn't defined on the rpmbuild line, define it here.
 %{!?kversion: %define kversion 3.10.0-862.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 2.0.4
+Version: 2.3.99
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -23,6 +23,8 @@ Source0: https://github.com/vel21ripn/nDPI/archive/%{ndpi_git_ver}.tar.gz
 Source5:  GPL-v2.0.txt
 Source10: kmodtool-%{kmod_name}-el7.sh
 Patch1: ndpi-netfilter_rhel7.5.patch
+Patch2: ndpi-netfilter_nethserver_id.patch
+Patch3: ndpi_issue_617_ggpht_com.patch
 
 # Magic hidden here.
 %{expand:%(sh %{SOURCE10} rpmtemplate %{kmod_name} %{kversion} "")}
@@ -37,7 +39,9 @@ of the same variant of the Linux kernel and not on any one specific build.
 
 %prep
 %setup -q -n nDPI-%{ndpi_git_ver}
-%patch1 -p0
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 ./autogen.sh
 ( cd src/lib ; make ndpi_network_list.c.inc )
 cd ndpi-netfilter
