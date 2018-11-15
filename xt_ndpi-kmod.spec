@@ -24,6 +24,7 @@ Source5:  GPL-v2.0.txt
 Source10: kmodtool-%{kmod_name}-el7.sh
 Patch1: ndpi-netfilter_rhel7.5.patch
 Patch2: ndpi-netfilter_nethserver_id.patch
+Patch3: ndpi_issue_617_ggpht_com.patch
 
 # Magic hidden here.
 %{expand:%(sh %{SOURCE10} rpmtemplate %{kmod_name} %{kversion} "")}
@@ -40,6 +41,7 @@ of the same variant of the Linux kernel and not on any one specific build.
 %setup -q -n nDPI-%{ndpi_git_ver}
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 ./autogen.sh
 ( cd src/lib ; make ndpi_network_list.c.inc )
 cd ndpi-netfilter
