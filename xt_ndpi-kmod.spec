@@ -6,7 +6,7 @@
 %{!?kversion: %define kversion 3.10.0-862.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 2.3.99
+Version: 2.2.0
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -82,6 +82,9 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Dec 05 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.2.0-1
+- Firewall: update to nDPI-netfilter-2.2 and nDPI-2.4  - NethServer/dev#5645
+
 * Wed May 16 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.4-1
 - nDPI: support CentOS 7.5 - NethServer/dev#5482
 
