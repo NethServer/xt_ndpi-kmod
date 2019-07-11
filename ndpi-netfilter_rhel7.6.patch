@@ -1,0 +1,27 @@
+--- a/ndpi-netfilter/src/main.c.orig	2019-07-09 12:42:12.107634903 +0200
++++ b/ndpi-netfilter/src/main.c	2019-07-09 12:43:01.304661383 +0200
+@@ -110,13 +110,9 @@
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(4,10,0)
+ static inline struct net *xt_net(const struct xt_action_param *par)
+ {
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
+         const struct net_device *dev = par->in;
+         if(!dev) dev = par->out;
+         return dev ? dev_net(dev): NULL;
+-#else
+-        return par->net;
+-#endif
+ }
+ static inline u_int8_t xt_family(const struct xt_action_param *par)
+ {
+@@ -138,10 +138,8 @@
+         return par->out;
+ }
+ #endif
+-#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
+ #define nf_register_net_hooks(net,a,s) nf_register_hooks(a,s)
+ #define nf_unregister_net_hooks(net,a,s) nf_unregister_hooks(a,s)
+-#endif
+ 
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(4,11,0)
+ #define refcount_dec_and_test(a) atomic_sub_and_test((int) 1,(a))
