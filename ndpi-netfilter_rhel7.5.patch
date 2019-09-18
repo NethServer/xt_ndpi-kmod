@@ -6,7 +6,7 @@ index fdd1dd7..f84cf7f 100644
  #include "../lib/third_party/include/ndpi_patricia.h"
  #include "../lib/third_party/include/ahocorasick.h"
  
-+#define LINUX_VERSION_CODE KERNEL_VERSION(4,8,0)
++#define LINUX_VERSION_CODE KERNEL_VERSION(4,10,0)
 +
  extern ndpi_protocol_match host_match[];
 
