@@ -1,12 +1,12 @@
 # Define the kmod package name here.
 %define kmod_name xt_ndpi
-%define ndpi_git_ver a360566135c9804b10aef5178d54a83fe2fd0cb9
+%define ndpi_git_ver 386a76eb65856b9e8b41d742ef819f76ebd065dc
 
 # If kversion isn't defined on the rpmbuild line, define it here.
-%{!?kversion: %define kversion 3.10.0-862.el7.%{_target_cpu}}
+%{!?kversion: %define kversion 3.10.0-1062.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 2.4.0
+Version: 2.8.0
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -14,8 +14,8 @@ Summary: %{kmod_name} kernel module(s)
 URL:     http://www.kernel.org/
 
 BuildRequires: redhat-rpm-config, perl, kernel-devel, gcc, iptables-devel, libpcap-devel, autoconf, automake, libtool
-BuildRequires: kernel = 3.10.0-862.el7, kernel-devel = 3.10.0-862.el7
-Requires: kernel >= 3.10.0-862
+BuildRequires: kernel = 3.10.0-1062.el7, kernel-devel = 3.10.0-1062.el7
+Requires: kernel >= 3.10.0-1062
 ExclusiveArch: x86_64
 
 # Sources.
@@ -24,7 +24,7 @@ Source5:  GPL-v2.0.txt
 Source10: kmodtool-%{kmod_name}-el7.sh
 Patch1: ndpi-netfilter_rhel7.5.patch
 Patch2: ndpi-netfilter_nethserver_id.patch
-Patch3: ndpi_issue_617_ggpht_com.patch
+Patch3: ndpi-netfilter_rhel7.6.patch
 
 # Magic hidden here.
 %{expand:%(sh %{SOURCE10} rpmtemplate %{kmod_name} %{kversion} "")}
@@ -45,7 +45,6 @@ of the same variant of the Linux kernel and not on any one specific build.
 ./autogen.sh
 ( cd src/lib ; make ndpi_network_list.c.inc )
 cd ndpi-netfilter
-sed -i -e 's/GFP_KERNEL/GFP_ATOMIC/' src/main.c
 sed -e '/^MODULES_DIR/d' -e '/^KERNEL_DIR/d' -i src/Makefile
 MODULES_DIR=/lib/modules/%{kversion} KERNEL_DIR=$MODULES_DIR/build/ make
 echo "override %{kmod_name} * weak-updates/%{kmod_name}" > kmod-%{kmod_name}.conf

@@ -1,8 +1,6 @@
-diff --git a/ndpi-netfilter/src/main.c b/ndpi-netfilter/src/main.c
-index 702ec5e..01cddee 100644
---- a/ndpi-netfilter/src/main.c
-+++ b/ndpi-netfilter/src/main.c
-@@ -2830,8 +2830,8 @@ static int parse_ndpi_proto(struct ndpi_net *n,char *cmd) {
+--- /tmp/ndpi_proc_parsers.c	2019-05-07 10:25:35.075399990 +0200
++++ b/ndpi-netfilter/src/ndpi_proc_parsers.c	2019-05-07 10:37:42.858250031 +0200
+@@ -824,8 +824,8 @@
  	if(!strcmp(hid,"init")) {
  		int i;
  		for(i=0; i < NDPI_NUM_BITS; i++) {
