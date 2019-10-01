@@ -81,6 +81,9 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Tue Oct 01 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.8.0-1
+- nDPI: update to 2.8.0 for kernel-3.10.0-1062 - NethServer/dev#5841
+
 * Wed Dec 05 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.4.0-1
 - Firewall: update to nDPI-netfilter-2.2 and nDPI-2.4  - NethServer/dev#5645
 
