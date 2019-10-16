@@ -6,7 +6,7 @@
 %{!?kversion: %define kversion 3.10.0-1062.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 2.8.0
+Version: 2.8.1
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -81,6 +81,9 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Oct 16 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.8.1-1
+- Bump release to override released RPM with git commit - NethServer/dev#5868
+
 * Tue Oct 01 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.8.0-1
 - nDPI: update to 2.8.0 for kernel-3.10.0-1062 - NethServer/dev#5841
 
