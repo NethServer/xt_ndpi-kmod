@@ -1,9 +1,9 @@
 # Define the kmod package name here.
 %define kmod_name xt_ndpi
-%define ndpi_git_ver 386a76eb65856b9e8b41d742ef819f76ebd065dc
+%define ndpi_git_ver 96cf7764577603f1bd2896d414532afe625f6667
 
 # If kversion isn't defined on the rpmbuild line, define it here.
-%{!?kversion: %define kversion 3.10.0-1160.el7.%{_target_cpu}}
+%{!?kversion: %define kversion 3.10.0-1160.6.1.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
 Version: 2.8.1
@@ -14,8 +14,8 @@ Summary: %{kmod_name} kernel module(s)
 URL:     http://www.kernel.org/
 
 BuildRequires: redhat-rpm-config, perl, kernel-devel, gcc, iptables-devel, libpcap-devel, autoconf, automake, libtool
-BuildRequires: kernel = 3.10.0-1160.el7, kernel-devel = 3.10.0-1160.el7
-Requires: kernel >= 3.10.0-1160
+BuildRequires: kernel = 3.10.0-1160.6.1.el7, kernel-devel = 3.10.0-1160.6.1.el7
+Requires: kernel >= 3.10.0-1160.6.1
 ExclusiveArch: x86_64
 
 # Sources.
