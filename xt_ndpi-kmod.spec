@@ -6,7 +6,7 @@
 %{!?kversion: %define kversion 3.10.0-1160.6.1.el7.%{_target_cpu}}
 
 Name:    %{kmod_name}-kmod
-Version: 2.8.1
+Version: 2.8.2
 Release: 1%{?dist}
 Group:   System Environment/Kernel
 License: GPLv2
@@ -81,6 +81,9 @@ done
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Nov 20 2020 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.8.2-1
+- Kernel 3.10.0-1160: rebuild kernel modules - NethServer/dev#6341
+
 * Wed Oct 16 2019 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.8.1-1
 - Bump release to override released RPM with git commit - NethServer/dev#5868
 
